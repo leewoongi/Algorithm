@@ -1,2 +1,1 @@
-# Algorithm
-# 2기
+# Algorithm 2기
