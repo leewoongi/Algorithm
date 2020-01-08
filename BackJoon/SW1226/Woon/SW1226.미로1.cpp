@@ -22,6 +22,9 @@ int main() {
 
 	for (int tc = 1; tc <= 10; tc++) {
 
+		int number;
+		cin >> number;
+
 		//map ÃÊ±âÈ­
 		int start_x, start_y;
 		int end_x, end_y;
@@ -42,7 +45,7 @@ int main() {
 				}
 			}
 		}
-	
+
 		stack<node> st;
 		st.push({ start_x,start_y });
 		visited[start_x][start_y] = true;
@@ -71,11 +74,16 @@ int main() {
 			}
 		}
 
-		cout << "#"+ tc +result << "\n";
+		cout << "#" << tc << " " << result << "\n";
 
 		for (int i = 0; i < 16; i++) {
 			for (int j = 0; j < 16; j++) {
 				visited[i][j] = false;
+			}
+		}
+		if (!st.empty()) {
+			while (st.empty()) {
+				st.pop();
 			}
 		}
 	}
