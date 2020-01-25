@@ -52,7 +52,8 @@ class Solution {
 					if (map[i][j] == ' ') {
 						// 위로 탐색해서 빈칸하고 동물들이 어디까지 있는지
 						int count = 0;
-
+						
+						//그림을 내리고 원래 그림위치에 공백을 해준다.
 						for (int k = i; k >= 0; k--) {
 							if (map[k][j] == ' ') {
 								count++;
