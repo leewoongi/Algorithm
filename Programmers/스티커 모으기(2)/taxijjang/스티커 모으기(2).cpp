@@ -17,35 +17,32 @@ typedef long long int ll;
 const int INF = 2000000000;
 
 int arr[SIZE];
-int dp[2][SIZE];
+int dp[SIZE];
 
 int solution(vector<int> sticker)
 {
 	int s_size = sticker.size();
-	if (s_size == 1)
-		return sticker[0];
+	int res = 0;
 	for (int i = 0; i < s_size; i++) {
 		arr[i + 1] = sticker[i];
 	}
+	//첫번째 쓰고 마지막 안썻을때
+	dp[1] = arr[1];
+	dp[2] = arr[2];
 
-	for (int i = 0; i < 3; i++) {
-		dp[0][i] = arr[i];
-		dp[1][s_size - i] = arr[s_size- i];
+	res = max(res, max(dp[1], dp[2]));
+	for (int i = 3; i < s_size; i++) {
+		dp[i] = arr[i] + max(dp[i - 2], dp[i - 3]);
+		res = max(res, dp[i]);
 	}
+
+	//첫번째 안쓰고 마지막 썻을때
+	dp[1] = 0;
+	dp[2] = arr[2];
 
 	for (int i = 3; i <= s_size; i++) {
-		dp[0][i] = arr[i] + max(dp[0][i - 2], dp[0][i - 3]);
-	}
-	dp[0][s_size] -= dp[0][1];
-
-	for (int i = s_size -2 ; i >= 0; i--) {
-		dp[1][i] = arr[i] + max(dp[1][i + 2], dp[1][i + 3]);
-	}
-	dp[1][1] -= dp[1][s_size];
-
-	int res = 0;
-	for (int i = 1; i <= 8; i++) {
-		res = max(res, max(dp[0][i], dp[1][i]));
+		dp[i] = arr[i] + max(dp[i - 2], dp[i - 3]);
+		res = max(res, dp[i]);
 	}
 
 	return res;
