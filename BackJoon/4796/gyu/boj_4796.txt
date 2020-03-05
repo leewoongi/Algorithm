@@ -1,0 +1,23 @@
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+	int L, P, V;
+	int case_test = 1;
+	while (1)
+	{
+		cin >> L >> P >> V;
+		if (L == 0 && P == 0 && V == 0)
+		{
+			break;
+		}
+		int check = V%P > L ? L : V % P;
+		int result = (V / P)*L + check;
+		cout << "Case " << case_test << ": " << result << endl;
+		case_test++;
+	}
+
+	return 0;
+}
