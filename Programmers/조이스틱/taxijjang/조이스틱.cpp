@@ -16,8 +16,7 @@ using namespace std;
 
 typedef long long int ll;
 
-//   tuple<s, index , cnt>
-
+//0에서 왼쪽으로 갈때, 알파벳크기 이상으로 넘어갔을때
 int find_index(string name, int index) {
 	int n_size = name.size();
 	if (index < 0)
@@ -26,15 +25,19 @@ int find_index(string name, int index) {
 		return 0;
 	return index;
 }
-int dis(char alpa) {
-	if (alpa <= 'M')
+//현재 알파벳과 A와의 거리 차이
+int dis(string & name, int index, char alpa) {
+	name[index] = 'A';
+	if (alpa <= 'M') {
 		return alpa - 'A';
+	}
 	return 26 - (alpa - 'A');
 }
 
-pair<int,int> move_left(string name, int index) {
+//왼쪽으로 이동
+pair<int, int> move_left(string name, int index) {
 	int cnt = 1;
-	
+
 	while (1) {
 		if (name[index = find_index(name, index - 1)] != 'A')
 			break;
@@ -44,7 +47,8 @@ pair<int,int> move_left(string name, int index) {
 	return{ index,cnt };
 }
 
-pair<int,int> move_right(string name, int index) {
+//오른쪽으로 이동
+pair<int, int> move_right(string name, int index) {
 	int cnt = 1;
 	while (1) {
 		if (name[index = find_index(name, index + 1)] != 'A')
@@ -54,26 +58,24 @@ pair<int,int> move_right(string name, int index) {
 
 	return{ index,cnt };
 }
+
 int solution(string name) {
-	int index = 0, cnt = dis(name[0]);
-	name[0] = 'A';
-	string judge (name.size(), 'A');
+	int index = 0, cnt = dis(name, index, name[0]);
+	string judge(name.size(), 'A');
 	while (name != judge) {
 		int left, right; left = right = index;
 
-		int l_index,l_cnt, r_index,r_cnt;
-		tie(l_index,l_cnt) = move_left(name, index);
-		tie(r_index,r_cnt)= move_right(name, index);
+		int l_index, l_cnt, r_index, r_cnt;
+		tie(l_index, l_cnt) = move_left(name, index);
+		tie(r_index, r_cnt) = move_right(name, index);
 		//left가 더 짧을 때
 		if (l_cnt < r_cnt) {
-			cnt += l_cnt + dis(name[l_index]);
-			name[l_index] = 'A';
+			cnt += l_cnt + dis(name, l_index, name[l_index]);
 			index = l_index;
 		}
 		//right가 더 짧을 때
 		else {
-			cnt += r_cnt + dis(name[r_index]);
-			name[r_index] = 'A';
+			cnt += r_cnt + dis(name, r_index, name[r_index]);
 			index = r_index;
 		}
 	}
