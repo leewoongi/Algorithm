@@ -70,28 +70,49 @@ bool solution(vector<string> phone_book) {
 	sort(phone_book.begin(), phone_book.end(), cmp);
 
 	bool answer = true;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> a3894adcafb8b1802b8c26cade42ddd56d77907b
 	for (auto phone : phone_book) {
 		bool check = root.insert(phone, 0);
 
 		if (check) {
+<<<<<<< HEAD
 			return false;
 		}
 	}
 	return true;
+=======
+			return true;
+		}
+	}
+	return false;
+>>>>>>> a3894adcafb8b1802b8c26cade42ddd56d77907b
 }
 
 int main(void) {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL); cout.tie(NULL);
 
+<<<<<<< HEAD
 	vector<string> phone_book = { "12","123","1234" };
+=======
+	vector<string> phone_book = { "12","123","1234"};
+>>>>>>> a3894adcafb8b1802b8c26cade42ddd56d77907b
 
 	bool res = solution(phone_book);
 
 	if (res)
+<<<<<<< HEAD
 		cout << "true\n";
 	else
 		cout << "false\n";
+=======
+		cout << "false\n";
+	else
+		cout << "true\n";
+>>>>>>> a3894adcafb8b1802b8c26cade42ddd56d77907b
 
 }
