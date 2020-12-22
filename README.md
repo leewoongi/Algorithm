@@ -1,1 +1,1 @@
-# Algorithm 2기
+# Algorithm 스터디 
