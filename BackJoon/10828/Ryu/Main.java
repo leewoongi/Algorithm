@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 class stk{
-	
 	private int size;
 	private int[] arr;
 	
